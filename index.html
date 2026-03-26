@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Assignment</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: -80px;
+            width: 100%;
+            background: black;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            transition: top 0.3s ease;
+            z-index: 1000;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        /* CAROUSEL SECTION */
+        .carousel-section {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .carousel-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* CAROUSEL */
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            scroll-behavior: smooth;
+        }
+
+        /* IMAGES */
+        .carousel-img {
+            width: 300px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        /* ZOOM EFFECT */
+        .carousel-img:hover {
+            transform: scale(1.2);
+        }
+
+        /* BUTTONS */
+        .btn {
+            padding: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .carousel-img {
+                width: 200px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sticky Header -->
+    <header id="header">
+        <h2>My Website</h2>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to My Page</h1>
+        <p>Scroll down to see sticky header & carousel</p>
+    </section>
+
+    <!-- Carousel Section -->
+    <section class="carousel-section">
+        <h2>Image Carousel</h2>
+
+        <div class="carousel-container">
+            <button class="btn" onclick="scrollLeft()">⬅</button>
+
+            <div class="carousel" id="carousel">
+                <img src="https://picsum.photos/300?1" class="carousel-img">
+                <img src="https://picsum.photos/300?2" class="carousel-img">
+                <img src="https://picsum.photos/300?3" class="carousel-img">
+                <img src="https://picsum.photos/300?4" class="carousel-img">
+                <img src="https://picsum.photos/300?5" class="carousel-img">
+            </div>
+
+            <button class="btn" onclick="scrollRight()">➡</button>
+        </div>
+    </section>
+
+    <script>
+        // STICKY HEADER
+        const header = document.getElementById("header");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 100) {
+                header.style.top = "0";
+            } else {
+                header.style.top = "-80px";
+            }
+        });
+
+        // CAROUSEL SCROLL
+        function scrollLeft() {
+            document.getElementById("carousel").scrollBy({
+                left: -300,
+                behavior: "smooth"
+            });
+        }
+
+        function scrollRight() {
+            document.getElementById("carousel").scrollBy({
+                left: 300,
+                behavior: "smooth"
+            });
+        }
+    </script>
+
+</body>
+</html>
